@@ -40,7 +40,7 @@ const LogIn = ({ navigation }) => {
       <Button
         text="Already have an account? Log in here."
         onPress={() => {
-          navigation.navigate("LogIn");
+          navigation.navigate("Log In");
         }}
         type="TERTIARY"
       />
