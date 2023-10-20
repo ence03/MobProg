@@ -10,6 +10,8 @@ const Forgotpassword = () => {
 
   const { control, handleSubmit } = useForm();
 
+  const EMAIL_REGEX = /[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+\.[a-zA-Z]{2,4}/;
+
   const onContinuePressed = () => {
     navigation.navigate("Reset Confirmation");
   };
@@ -17,8 +19,20 @@ const Forgotpassword = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Reset Password?</Text>
-      <Input name="Enter Email" placeholder="Enter Email" control={control} />
-      <Button text="Continue" type="PRIMARY" onPress={onContinuePressed} />
+      <Input
+        name="Enter Email"
+        placeholder="Enter Email"
+        control={control}
+        rules={{
+          required: "Email is required",
+          pattern: { value: EMAIL_REGEX, message: "Email is invalid" },
+        }}
+      />
+      <Button
+        text="Continue"
+        type="PRIMARY"
+        onPress={handleSubmit(onContinuePressed)}
+      />
     </View>
   );
 };
@@ -35,7 +49,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 25,
-    fontWeight: "semi-bold",
+    fontWeight: "300",
     color: "#142850",
   },
 });

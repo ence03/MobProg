@@ -10,17 +10,25 @@ import Input from "../../components/Inputs/Input";
 import Button from "../../components/Buttons/Button";
 import Logo from "../../../assets/images/logo.png";
 import { useNavigation } from "@react-navigation/native";
-import { useForm ,Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
 const LogIn = () => {
   const { height } = useWindowDimensions();
   const navigation = useNavigation();
 
-  const { control, handleSubmit } = useForm();
+  const { control, handleSubmit, watch } = useForm();
+
+  const pass = watch("password");
 
   const onBackToLogin = () => {
     navigation.navigate("Login");
   };
+
+  const onRegisterPressed = () => {
+    navigation.navigate("Login");
+  };
+
+  const EMAIL_REGEX = /[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+\.[a-zA-Z]{2,4}/;
 
   return (
     <View style={styles.container}>
@@ -32,23 +40,60 @@ const LogIn = () => {
 
       <Text style={styles.title}>Create an account</Text>
 
-      <Input name="Username" placeholder="Username" control={control} />
-
-      <Input name="Email" placeholder="Email" control={control} />
       <Input
-        name="Password"
+        name="username"
+        placeholder="Username"
+        control={control}
+        rules={{
+          required: "Username is required",
+          minLength: {
+            value: 4,
+            message: "Username should be at least 4 characters minimum",
+          },
+          maxLength: {
+            value: 24,
+            message: "Username should be only 24 characters long",
+          },
+        }}
+      />
+
+      <Input
+        name="email"
+        placeholder="Email"
+        control={control}
+        rules={{
+          required: "Email is required",
+          pattern: { value: EMAIL_REGEX, message: "Email is invalid" },
+        }}
+      />
+      <Input
+        name="password"
         placeholder="Password"
         control={control}
         secureTextEntry
+        rules={{
+          required: "Password is required",
+          minLength: {
+            value: 8,
+            message: "Password should be at least 8 characters long",
+          },
+        }}
       />
       <Input
-        name="Confirm Password"
+        name="confirm-password"
         placeholder="Confirm Password"
         control={control}
         secureTextEntry
+        rules={{
+          validate: (value) => value === pass || "Password do not match",
+        }}
       />
 
-      <Button text="Register" type="PRIMARY" />
+      <Button
+        text="Register"
+        type="PRIMARY"
+        onPress={handleSubmit(onRegisterPressed)}
+      />
       <Button
         text="Already have an account? Log in here."
         onPress={onBackToLogin}
@@ -70,7 +115,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 25,
-    fontWeight: "semi-bold",
+    fontWeight: "300",
     color: "#142850",
   },
 

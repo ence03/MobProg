@@ -10,15 +10,20 @@ import Input from "../../components/Inputs/Input";
 import Button from "../../components/Buttons/Button";
 import Logo from "../../../assets/images/logo.png";
 import { useNavigation } from "@react-navigation/native";
-import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
 const LogIn = () => {
-  const { control, handleSubmit } = useForm();
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   const { height } = useWindowDimensions();
   const navigation = useNavigation();
 
-  const onLoginPress = () => {
+  const onLoginPress = (data) => {
+    console.log(data);
     navigation.navigate("Home");
   };
 
@@ -39,15 +44,31 @@ const LogIn = () => {
       />
       <Text style={styles.title}>Log in your account</Text>
 
-      <Input name="username" placeholder="Username" control={control} />
       <Input
-        name="Password"
+        name="username"
+        placeholder="Username"
+        control={control}
+        rules={{ required: "Username is required" }}
+      />
+      <Input
+        name="password"
         placeholder="Password"
         control={control}
         secureTextEntry
+        rules={{
+          required: "Password is required",
+          minLength: {
+            value: 8,
+            message: "Password should be at least 8 characters long",
+          },
+        }}
       />
 
-      <Button text="Log In" type="PRIMARY" onPress={onLoginPress} />
+      <Button
+        text="Log In"
+        type="PRIMARY"
+        onPress={handleSubmit(onLoginPress)}
+      />
       <Button
         text="Forgot Password?"
         type="TERTIARY"
@@ -74,7 +95,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 25,
-    fontWeight: "semi-bold",
+    fontWeight: "300",
     color: "#142850",
   },
 

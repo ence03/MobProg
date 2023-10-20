@@ -1,11 +1,19 @@
-import { View, Text, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  useWindowDimensions,
+  Image,
+} from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
-import { useForm, Controller } from "react-hook-form";
 import Button from "../../components/Buttons/Button";
+import Logo from "../../../assets/images/logo.png";
 
 const Home = () => {
   const navigation = useNavigation();
+
+  const { height } = useWindowDimensions();
 
   const onPressSignOut = () => {
     navigation.navigate("Login");
@@ -14,6 +22,11 @@ const Home = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Home</Text>
+      <Image
+        style={[styles.logo, { height: height * 0.3 }]}
+        source={Logo}
+        resizeMode="contain"
+      />
       <Button text="Sign Out" type="TERTIARY" onPress={onPressSignOut} />
     </View>
   );
@@ -30,6 +43,13 @@ const styles = StyleSheet.create({
 
   title: {
     fontSize: 30,
+    fontWeight: "300",
+  },
+
+  logo: {
+    width: "70%",
+    maxWidth: 300,
+    height: 100,
   },
 });
 
