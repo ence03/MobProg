@@ -26,13 +26,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     padding: 20,
-    backgroundColor: "#EBE4D1",
+    backgroundColor: "#DAE1E7",
     borderRadius: 5,
   },
   title: {
     fontSize: 25,
-    fontWeight: "bold",
-    color: "#26577C",
+    fontWeight: "semi-bold",
+    color: "#142850",
   },
 });
 

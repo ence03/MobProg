@@ -1,27 +1,35 @@
-import { View, Text, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  useWindowDimensions,
+  Image,
+} from "react-native";
 import React, { useState } from "react";
 import Input from "../../components/Inputs/Input";
 import Button from "../../components/Buttons/Button";
+import Logo from "../../../assets/images/logo.png";
 
 const LogIn = ({ navigation }) => {
+  const { height } = useWindowDimensions();
+
   const [username, setUsername] = useState("");
-  const [firstname, setFisrtname] = useState("");
-  const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmpassword, setConfirmpassword] = useState("");
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Register</Text>
+      <Image
+        style={[styles.logo, { height: height * 0.3 }]}
+        source={Logo}
+        resizeMode="contain"
+      />
+
+      <Text style={styles.title}>Create an account</Text>
 
       <Input placeholder="Username" value={username} setValue={setUsername} />
-      <Input
-        placeholder="Firstname"
-        value={firstname}
-        setValue={setFisrtname}
-      />
-      <Input placeholder="Lastname" value={lastname} setValue={setLastname} />
+
       <Input placeholder="Email" value={email} setValue={setEmail} />
       <Input
         placeholder="Password"
@@ -55,13 +63,19 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     padding: 20,
-    backgroundColor: "#EBE4D1",
+    backgroundColor: "#DAE1E7",
     borderRadius: 5,
   },
   title: {
     fontSize: 25,
-    fontWeight: "bold",
-    color: "#26577C",
+    fontWeight: "semi-bold",
+    color: "#142850",
+  },
+
+  logo: {
+    width: "70%",
+    maxWidth: 300,
+    height: 100,
   },
 });
 

@@ -31,12 +31,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     padding: 20,
-    backgroundColor: "#EBE4D1",
+    backgroundColor: "#DAE1E7",
     borderRadius: 5,
   },
   text: {
     marginVertical: 10,
-    color: "#E55604",
+    color: "#142850",
   },
 });
 

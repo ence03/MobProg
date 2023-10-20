@@ -16,22 +16,26 @@ const styles = StyleSheet.create({
   container: {
     width: "100%",
     alignItems: "center",
-    padding: 10,
-    marginVertical: 10,
   },
 
   container_PRIMARY: {
-    backgroundColor: "#E55604",
+    backgroundColor: "#00909E",
     borderRadius: 5,
+    marginVertical: 10,
+    padding: 10,
+  },
+
+  container_TERTIARY: {
+    marginVertical: 5,
   },
 
   text_PRIMARY: {
     fontWeight: "bold",
-    color: "#EBE4D1",
+    color: "#DAE1E7",
   },
 
   text_TERTIARY: {
-    color: "#E55604",
+    color: "#142850",
   },
 });
 

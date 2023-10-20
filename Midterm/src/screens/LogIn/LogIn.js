@@ -23,7 +23,7 @@ const LogIn = ({ navigation }) => {
         source={Logo}
         resizeMode="contain"
       />
-      <Text style={styles.title}>Log In</Text>
+      <Text style={styles.title}>Log in your account.</Text>
 
       <Input placeholder="Username" value={username} setValue={setUsername} />
       <Input
@@ -59,20 +59,19 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     padding: 20,
-    backgroundColor: "#EBE4D1",
+    backgroundColor: "#DAE1E7",
     borderRadius: 5,
   },
   title: {
     fontSize: 25,
-    fontWeight: "bold",
-    color: "#26577C",
+    fontWeight: "semi-bold",
+    color: "#142850",
   },
 
   logo: {
     width: "70%",
-    maxWidth: 200,
+    maxWidth: 300,
     height: 100,
-    marginVertical: 5,
   },
 });
 
