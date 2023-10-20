@@ -10,15 +10,13 @@ import Input from "../../components/Inputs/Input";
 import Button from "../../components/Buttons/Button";
 import Logo from "../../../assets/images/logo.png";
 import { useNavigation } from "@react-navigation/native";
+import { useForm ,Controller } from "react-hook-form";
 
 const LogIn = () => {
   const { height } = useWindowDimensions();
   const navigation = useNavigation();
 
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmpassword, setConfirmpassword] = useState("");
+  const { control, handleSubmit } = useForm();
 
   const onBackToLogin = () => {
     navigation.navigate("Login");
@@ -34,19 +32,19 @@ const LogIn = () => {
 
       <Text style={styles.title}>Create an account</Text>
 
-      <Input placeholder="Username" value={username} setValue={setUsername} />
+      <Input name="Username" placeholder="Username" control={control} />
 
-      <Input placeholder="Email" value={email} setValue={setEmail} />
+      <Input name="Email" placeholder="Email" control={control} />
       <Input
+        name="Password"
         placeholder="Password"
-        value={password}
-        setValue={setPassword}
+        control={control}
         secureTextEntry
       />
       <Input
+        name="Confirm Password"
         placeholder="Confirm Password"
-        value={confirmpassword}
-        setValue={setConfirmpassword}
+        control={control}
         secureTextEntry
       />
 

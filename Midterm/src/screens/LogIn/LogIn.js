@@ -19,7 +19,7 @@ const LogIn = () => {
   const navigation = useNavigation();
 
   const onLoginPress = () => {
-    navigation.navigate("");
+    navigation.navigate("Home");
   };
 
   const onForgotPasswordPressed = () => {

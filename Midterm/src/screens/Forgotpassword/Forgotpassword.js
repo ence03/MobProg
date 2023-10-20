@@ -3,9 +3,12 @@ import React from "react";
 import Input from "../../components/Inputs/Input";
 import Button from "../../components/Buttons/Button";
 import { useNavigation } from "@react-navigation/native";
+import { useForm, Controller } from "react-hook-form";
 
 const Forgotpassword = () => {
   const navigation = useNavigation();
+
+  const { control, handleSubmit } = useForm();
 
   const onContinuePressed = () => {
     navigation.navigate("Reset Confirmation");
@@ -14,7 +17,7 @@ const Forgotpassword = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Reset Password?</Text>
-      <Input placeholder="Enter Email" />
+      <Input name="Enter Email" placeholder="Enter Email" control={control} />
       <Button text="Continue" type="PRIMARY" onPress={onContinuePressed} />
     </View>
   );

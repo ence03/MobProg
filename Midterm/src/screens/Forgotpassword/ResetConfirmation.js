@@ -3,11 +3,10 @@ import React, { useState } from "react";
 import Input from "../../components/Inputs/Input";
 import Button from "../../components/Buttons/Button";
 import { useNavigation } from "@react-navigation/native";
+import { useForm, Controller } from "react-hook-form";
 
 const ResetConfirmation = () => {
-  const [code, setCode] = useState("");
-  const [newPassword, setNewPassword] = useState("");
-  const [confirmPass, setConfirmPass] = useState("");
+  const { control, handleSubmit } = useForm();
 
   const navigation = useNavigation();
 
@@ -21,17 +20,21 @@ const ResetConfirmation = () => {
       <Text style={styles.text}>
         We have sent a four digit code on your phone/email
       </Text>
-      <Input placeholder="Four digit code" value={code} setValue={setCode} />
       <Input
+        name="Four digit code"
+        placeholder="Four digit code"
+        control={control}
+      />
+      <Input
+        name="New Password"
         placeholder="New password"
-        value={newPassword}
-        setValue={setNewPassword}
+        control={control}
         secureTextEntry
       />
       <Input
+        name="Confirm password"
         placeholder="Confirm password"
-        value={confirmPass}
-        setValue={setConfirmPass}
+        control={control}
         secureTextEntry
       />
       <Button text="Reset Password" type="PRIMARY" onPress={onResetPass} />
