@@ -2,11 +2,18 @@ import { View, Text, StyleSheet } from "react-native";
 import React, { useState } from "react";
 import Input from "../../components/Inputs/Input";
 import Button from "../../components/Buttons/Button";
+import { useNavigation } from "@react-navigation/native";
 
-const ResetConfirmation = ({ navigation }) => {
+const ResetConfirmation = () => {
   const [code, setCode] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPass, setConfirmPass] = useState("");
+
+  const navigation = useNavigation();
+
+  const onResetPass = () => {
+    navigation.navigate("Confirmation");
+  };
 
   return (
     <View style={styles.container}>
@@ -27,13 +34,7 @@ const ResetConfirmation = ({ navigation }) => {
         setValue={setConfirmPass}
         secureTextEntry
       />
-      <Button
-        text="Reset Password"
-        type="PRIMARY"
-        onPress={() => {
-          navigation.navigate("Confirmation");
-        }}
-      />
+      <Button text="Reset Password" type="PRIMARY" onPress={onResetPass} />
     </View>
   );
 };

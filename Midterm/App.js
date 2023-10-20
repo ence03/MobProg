@@ -14,7 +14,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Log In" component={LogIn} />
+        <Stack.Screen name="Login" component={LogIn} />
         <Stack.Screen name="Register" component={Register} />
         <Stack.Screen name="Forgot Password" component={Forgotpassword} />
         <Stack.Screen name="Reset Confirmation" component={ResetConfirmation} />

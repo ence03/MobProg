@@ -9,12 +9,26 @@ import React, { useState } from "react";
 import Input from "../../components/Inputs/Input";
 import Button from "../../components/Buttons/Button";
 import Logo from "../../../assets/images/logo.png";
+import { useNavigation } from "@react-navigation/native";
+import { useForm, Controller } from "react-hook-form";
 
-const LogIn = ({ navigation }) => {
+const LogIn = () => {
+  const { control, handleSubmit } = useForm();
+
   const { height } = useWindowDimensions();
+  const navigation = useNavigation();
 
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const onLoginPress = () => {
+    navigation.navigate("");
+  };
+
+  const onForgotPasswordPressed = () => {
+    navigation.navigate("Forgot Password");
+  };
+
+  const onDontHaveAccountPressed = () => {
+    navigation.navigate("Register");
+  };
 
   return (
     <View style={styles.container}>
@@ -23,29 +37,25 @@ const LogIn = ({ navigation }) => {
         source={Logo}
         resizeMode="contain"
       />
-      <Text style={styles.title}>Log in your account.</Text>
+      <Text style={styles.title}>Log in your account</Text>
 
-      <Input placeholder="Username" value={username} setValue={setUsername} />
+      <Input name="username" placeholder="Username" control={control} />
       <Input
+        name="Password"
         placeholder="Password"
-        value={password}
-        setValue={setPassword}
+        control={control}
         secureTextEntry
       />
 
-      <Button text="Log In" type="PRIMARY" />
+      <Button text="Log In" type="PRIMARY" onPress={onLoginPress} />
       <Button
         text="Forgot Password?"
         type="TERTIARY"
-        onPress={() => {
-          navigation.navigate("Forgot Password");
-        }}
+        onPress={onForgotPasswordPressed}
       />
       <Button
         text="Don't have an account? Resgister here."
-        onPress={() => {
-          navigation.navigate("Register");
-        }}
+        onPress={onDontHaveAccountPressed}
         type="TERTIARY"
       />
     </View>

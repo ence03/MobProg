@@ -7,19 +7,20 @@ import {
 } from "react-native";
 import React from "react";
 import Button from "../../components/Buttons/Button";
+import { useNavigation } from "@react-navigation/native";
 
-const Confirmation = ({ navigation }) => {
+const Confirmation = () => {
+  const navigation = useNavigation();
+
+  const onBackToLogin = () => {
+    navigation.navigate("Login");
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Your password has been reset sucessfully</Text>
       <Text style={styles.text}>Now Login with your new password</Text>
-      <Button
-        text="Log In"
-        type="PRIMARY"
-        onPress={() => {
-          navigation.navigate("Log In");
-        }}
-      />
+      <Button text="Log In" type="PRIMARY" onPress={onBackToLogin} />
     </View>
   );
 };

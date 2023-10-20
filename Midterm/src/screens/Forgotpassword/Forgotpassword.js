@@ -2,19 +2,20 @@ import { View, Text, StyleSheet } from "react-native";
 import React from "react";
 import Input from "../../components/Inputs/Input";
 import Button from "../../components/Buttons/Button";
+import { useNavigation } from "@react-navigation/native";
 
-const Forgotpassword = ({ navigation }) => {
+const Forgotpassword = () => {
+  const navigation = useNavigation();
+
+  const onContinuePressed = () => {
+    navigation.navigate("Reset Confirmation");
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Reset Password?</Text>
       <Input placeholder="Enter Email" />
-      <Button
-        text="Continue"
-        type="PRIMARY"
-        onPress={() => {
-          navigation.navigate("Reset Confirmation");
-        }}
-      />
+      <Button text="Continue" type="PRIMARY" onPress={onContinuePressed} />
     </View>
   );
 };
